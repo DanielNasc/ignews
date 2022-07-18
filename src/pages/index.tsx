@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import styles from "../styles/Home.module.scss";
-
 const Home: NextPage = () => {
   return (
     <>
@@ -10,7 +8,7 @@ const Home: NextPage = () => {
         <title>Home | ig.news</title>
       </Head>
       <div>
-        <h1 className={styles.title}>Hello, Ignews</h1>
+        <h1>Hello, Ignews</h1>
       </div>
     </>
   );
