@@ -1,9 +1,15 @@
 import type { AppProps } from "next/app";
+import { Header } from "../components/Header";
 
 import "../styles/global.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Header /> {/* O header aparece em todas as páginas */}
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default MyApp;
