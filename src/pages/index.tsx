@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import { SubscribeButton } from "../components/SubscribeButton/SubscribeButton";
 
 import styles from "./home.module.scss";
 
@@ -20,9 +21,16 @@ const Home: NextPage = () => {
             Get access to the latest news about the React framework. <br />
             <span>for $9.90/month</span>
           </p>
+
+          <SubscribeButton />
         </section>
 
-        <img src="/images/avatar.svg" alt="a girl codding in a notebook" />
+        <Image
+          src="/images/avatar.svg"
+          alt="a girl codding in a notebook"
+          width="336"
+          height="521"
+        />
       </main>
     </>
   );
