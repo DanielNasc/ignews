@@ -1,15 +1,29 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
+
+import styles from "./home.module.scss";
 
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Home | Ig.news</title>
+        <title>Home | ig.news</title>
       </Head>
-      <div>
-        <h1>Hello, Ignews</h1>
-      </div>
+      <main className={styles.contentContainer}>
+        <section className={styles.hero}>
+          <span>👋 Hey, welcome</span>
+          <h1>
+            News about the <span>React</span> world.
+          </h1>
+          <p>
+            Get access to the latest news about the React framework. <br />
+            <span>for $9.90/month</span>
+          </p>
+        </section>
+
+        <img src="/images/avatar.svg" alt="a girl codding in a notebook" />
+      </main>
     </>
   );
 };
