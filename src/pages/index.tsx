@@ -5,7 +5,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Home | ig.news</title>
+        <title>Home | Ig.news</title>
       </Head>
       <div>
         <h1>Hello, Ignews</h1>
