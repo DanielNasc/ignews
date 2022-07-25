@@ -1,11 +1,23 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { SubscribeButton } from "../components/SubscribeButton/SubscribeButton";
+import { stripe } from "../services/stripe";
 
 import styles from "./home.module.scss";
 
-const Home: NextPage = () => {
+const PRICE_ID = "price_1LOrlbLfP0IBycrAeb1PV710"
+
+interface product {
+  priceId: string,
+  amount: string,
+}
+
+interface HomeProps {
+  product: product,
+}
+
+export default function Home({ product }: HomeProps) {
   return (
     <>
       <Head>
@@ -19,10 +31,10 @@ const Home: NextPage = () => {
           </h1>
           <p>
             Get access to the latest news about the React framework. <br />
-            <span>for $9.90/month</span>
+            <span>for {product.amount}/month</span>
           </p>
-
-          <SubscribeButton />
+    
+          <SubscribeButton  priceId={PRICE_ID} />
         </section>
 
         <Image
@@ -36,4 +48,22 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+// SSG --> Static Site Generation
+export const getStaticProps: GetStaticProps = async () => {
+  const price = await stripe.prices.retrieve(PRICE_ID)
+
+  const product: product = {
+    priceId: price.id,
+    amount: new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }).format((price.unit_amount || 0) / 100),
+  }
+
+  return {
+    props: {
+      product
+    },
+    revalidate: 60 * 60 * 24, // 1 day
+  }
+}
