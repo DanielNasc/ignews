@@ -33,10 +33,6 @@ export async function saveSubscription(
       })
     );
   } else {
-    console.log("===========================");
-    console.log(subscriptionData);
-    console.log("===========================");
-
     // se for uma atualizacao, atualizar a subscription no faunadb
     await faunaClient.query(
       q.Replace(
