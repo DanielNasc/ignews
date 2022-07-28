@@ -6,15 +6,15 @@ import { stripe } from "../services/stripe";
 
 import styles from "./home.module.scss";
 
-const PRICE_ID = "price_1LOrlbLfP0IBycrAeb1PV710"
+const PRICE_ID = process.env.PRICE_ID!;
 
 interface product {
-  priceId: string,
-  amount: string,
+  priceId: string;
+  amount: string;
 }
 
 interface HomeProps {
-  product: product,
+  product: product;
 }
 
 export default function Home({ product }: HomeProps) {
@@ -33,8 +33,8 @@ export default function Home({ product }: HomeProps) {
             Get access to the latest news about the React framework. <br />
             <span>for {product.amount}/month</span>
           </p>
-    
-          <SubscribeButton  priceId={PRICE_ID} />
+
+          <SubscribeButton priceId={PRICE_ID} />
         </section>
 
         <Image
@@ -46,24 +46,24 @@ export default function Home({ product }: HomeProps) {
       </main>
     </>
   );
-};
+}
 
 // SSG --> Static Site Generation
 export const getStaticProps: GetStaticProps = async () => {
-  const price = await stripe.prices.retrieve(PRICE_ID)
+  const price = await stripe.prices.retrieve(PRICE_ID);
 
   const product: product = {
     priceId: price.id,
-    amount: new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    amount: new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
     }).format((price.unit_amount || 0) / 100),
-  }
+  };
 
   return {
     props: {
-      product
+      product,
     },
     revalidate: 60 * 60 * 24, // 1 day
-  }
-}
+  };
+};
