@@ -11,6 +11,8 @@ yarn
 npx @slicemachine/init --repository YOUR_REPO
 yarn slicemachine
 
+# Stripe
+stripe listen --forward-to localhost:3000/api/webhooks
 
 yarn dev
 ```
