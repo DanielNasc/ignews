@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { SubscribeButton } from "../components/SubscribeButton/SubscribeButton";
+import { SubscribeButton } from "../components/SubscribeButton";
 import { stripe } from "../services/stripe";
 
 import styles from "./home.module.scss";
@@ -34,7 +34,7 @@ export default function Home({ product }: HomeProps) {
             <span>for {product.amount}/month</span>
           </p>
 
-          <SubscribeButton priceId={PRICE_ID} />
+          <SubscribeButton />
         </section>
 
         <Image
