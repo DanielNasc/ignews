@@ -52,8 +52,11 @@ export default async function webhooks(
       incomingSignature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (err) {
-    return res.status(400).end("Invalid signature");
+  } catch (err: any) {
+    return res.status(400).json({
+      error: "Invalid signature",
+      message: err.message,
+    });
   }
 
   const { type } = event;
