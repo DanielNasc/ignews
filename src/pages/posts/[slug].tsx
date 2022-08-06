@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const session = await getSession({ req });
 
-  if (!session?.activesubscription) {
+  if (!session?.activeSubscription) {
     return {
       redirect: {
         destination: "/",
@@ -52,16 +52,16 @@ export const getServerSideProps: GetServerSideProps = async ({
     };
   }
 
-  if (!params) {
-    return {
-      redirect: {
-        destination: "/posts",
-        permanent: false,
-      },
-    };
-  }
+  // if (!params) {
+  //   return {
+  //     redirect: {
+  //       destination: "/posts",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
 
-  const slug = params["slug"] as string;
+  const slug = params!["slug"] as string;
 
   const response: any = await client.getByUID("post", slug, {});
 

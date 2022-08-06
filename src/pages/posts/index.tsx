@@ -8,7 +8,7 @@ import { client } from "../../services/prismic";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 
-interface Post {
+export interface Post {
   slug: string;
   title: string;
   excerpt: string;
@@ -29,8 +29,8 @@ export default function Posts({ posts }: PostProps) {
       <main className={styles.container}>
         <div className={styles.posts}>
           {posts.map((post) => (
-            <Link href={`/posts/${post.slug}`}>
-              <a key={post.slug}>
+            <Link href={`/posts/${post.slug}`} key={post.slug}>
+              <a>
                 <time>{post.updatedAt}</time>
                 <strong>{post.title}</strong>
                 <p>{post.excerpt}</p>
